@@ -59,7 +59,7 @@ function makeHtmlBoard() {
             // TODO: Create a table cell element and assign to a "cell" variable
             let cell = document.createElement("td");
             // TODO: add an id, c-y-x, to the above table cell element
-            cell.setAttribute("id", "c" - y - x);
+            cell.setAttribute("id", `c-${y}-${x}`);
             // you'll use this later, so make sure you use c-y-x
 
             // TODO: append the table cell to the table row
@@ -84,6 +84,10 @@ function placeInTable(y, x) {
     // TODO: make a div and insert into correct table cell
     let piece = document.createElement('div');
     piece.classList.add('piece', `p${currPlayer}`);
+
+    let cell = document.querySelector(`#c-${y}-${x}`);
+    cell.append(piece);
+
 }
 
 /** endGame: announce game end */
