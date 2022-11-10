@@ -100,6 +100,7 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
+    alert(msg);
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -127,12 +128,12 @@ function handleClick(evt) {
 
     // check for tie
     // TODO: check if all cells in board are filled; if so call, call endGame
-    const everyCellOccupied = board.every(function (cell) {
+    const everyCellOccupied = board[0].every(function (cell) {
         return cell !== null;
     })
 
     if (everyCellOccupied === true) {
-        endGame('Tied!');
+       return endGame('Tied!');
     }
     // switch players
     // TODO: switch currPlayer 1 <-> 2
@@ -156,9 +157,13 @@ function checkForWin() {
 
         // TODO: Check four cells to see if they're all legal & all color of current
         // player
-        if (cells.every(cell => {
-            return cell === currPlayer;
-        }))
+     //
+
+        const winner = cells.every(function([y, x]) {
+            return (y >= 0 && y < HEIGHT) && (x >=0 && x < WIDTH) && (board[y][x] === currPlayer);
+        })
+
+        return winner;
 
     }
 
