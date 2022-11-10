@@ -127,7 +127,7 @@ function handleClick(evt) {
 
     // check for tie
     // TODO: check if all cells in board are filled; if so call, call endGame
-    const everyCellOccupied = board.every(function(cell) {
+    const everyCellOccupied = board.every(function (cell) {
         return cell !== null;
     })
 
@@ -156,6 +156,9 @@ function checkForWin() {
 
         // TODO: Check four cells to see if they're all legal & all color of current
         // player
+        if (cells.every(cell => {
+            return cell === currPlayer;
+        }))
 
     }
 
@@ -170,9 +173,9 @@ function checkForWin() {
             // [ [y, x], [y, x], [y, x], [y, x] ]
 
             let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
-            let vert;
-            let diagDL;
-            let diagDR;
+            let vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
+            let diagDL = [[y, x], [y - 1, x - 1], [y - 2, x - 2], [y - 3, x - 3]];
+            let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
 
             // find winner (only checking each win-possibility as needed)
             if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
